@@ -1,0 +1,22 @@
+[
+    {
+        "name": "LaboratorPW2026",
+        "tech": "HTML, CSS, JavaScript",
+        "done": false
+    },
+    {
+        "name": "CoolGame",
+        "tech": "C#, .NET",
+        "done": false
+    },
+    {
+        "name": "SplatScape",
+        "tech": "Python, C, React, JavaScript",
+        "done": true
+    },
+    { 
+        "name": "CS2 interactive menu for teaching how to throw grenades",
+        "tech": "C#, .NET",
+        "done": true
+    }
+]
