@@ -1,6 +1,6 @@
 # Dashboard Web — Grecu Tudor-Mihai
 
-Aplicație full-stack pentru gestionarea proiectelor web personale.
+Aplicatie full-stack pentru gestionarea proiectelor web personale.
 
 ## Tehnologii
 
@@ -9,7 +9,7 @@ Aplicație full-stack pentru gestionarea proiectelor web personale.
 - **Baza de date:** MongoDB + Mongoose
 - **Deploy:** Vercel (frontend) + Render (backend) + MongoDB Atlas
 
-## Pornire locală
+## Pornire locala
 
 ### Backend
 ```bash
@@ -28,4 +28,4 @@ npm run dev
 
 ## Autor
 
-Grecu Tudor-Mihai — Programare Web, 2025-2026
+Grecu Tudor-Mihai — Programare Web, 2026
