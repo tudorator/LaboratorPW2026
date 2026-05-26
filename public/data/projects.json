@@ -1,0 +1,8 @@
+{
+  "projects": [
+    { "id": 1, "title": "LaboratorPW2026",    "tech": "HTML, CSS, JavaScript", "done": false },
+    { "id": 2, "title": "CoolGame",            "tech": "C#, .NET",              "done": false },
+    { "id": 3, "title": "SplatScape",          "tech": "Python, C, React, JavaScript", "done": true },
+    { "id": 4, "title": "CS2 Grenade Menu",    "tech": "C#, .NET",              "done": true }
+  ]
+}
