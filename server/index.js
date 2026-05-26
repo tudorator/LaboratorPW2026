@@ -1,0 +1,97 @@
+require('dotenv').config();
+
+const express  = require('express');
+const cors     = require('cors');
+const mongoose = require('mongoose');
+const Project  = require('./models/Project');
+
+const app  = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+  ]
+}));
+app.use(express.json());
+
+const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/dashboard';
+
+mongoose.connect(mongoUri)
+  .then(function () { console.log('Conectat la MongoDB!'); })
+  .catch(function (err) { console.error('Eroare MongoDB:', err.message); });
+
+app.get('/', function (req, res) {
+  res.json({ message: 'Serverul functioneaza!' });
+});
+
+app.get('/api/projects', async function (req, res) {
+  try {
+    const projects = await Project.find();
+    res.json(projects);
+  } catch (err) {
+    res.status(500).json({ error: 'Eroare server: ' + err.message });
+  }
+});
+
+app.get('/api/projects/:id', async function (req, res) {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) return res.status(404).json({ error: 'Proiect negasit' });
+    res.json(project);
+  } catch (err) {
+    res.status(400).json({ error: 'ID invalid: ' + err.message });
+  }
+});
+
+app.post('/api/projects', async function (req, res) {
+  try {
+    const newProject = new Project({
+      title: req.body.title,
+      tech:  req.body.tech,
+      done:  req.body.done || false,
+    });
+    const saved = await newProject.save();
+    res.status(201).json(saved);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.put('/api/projects/:id', async function (req, res) {
+  try {
+    const updated = await Project.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!updated) return res.status(404).json({ error: 'Proiect negasit' });
+    res.json(updated);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.delete('/api/projects/:id', async function (req, res) {
+  try {
+    const deleted = await Project.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ error: 'Proiect negasit' });
+    res.json({ message: 'Proiect sters cu succes' });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.get('/api/stats', async function (req, res) {
+  try {
+    const total = await Project.countDocuments();
+    const done  = await Project.countDocuments({ done: true });
+    res.json({ total: total, done: done, inProgress: total - done });
+  } catch (err) {
+    res.status(500).json({ error: 'Eroare server: ' + err.message });
+  }
+});
+
+app.listen(PORT, function () {
+  console.log('Server pornit pe http://localhost:' + PORT);
+});
