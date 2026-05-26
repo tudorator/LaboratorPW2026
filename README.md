@@ -16,14 +16,14 @@ Aplicatie full-stack pentru gestionarea proiectelor web personale.
 cd server
 npm install
 node index.js
-# Rulează pe http://localhost:3000
+# Ruleaza pe http://localhost:3000
 ```
 
 ### Frontend
 ```bash
 npm install
 npm run dev
-# Rulează pe http://localhost:5173
+# Ruleaza pe http://localhost:5173
 ```
 
 ## Autor
