@@ -28,4 +28,4 @@ npm run dev
 
 ## Autor
 
-Grecu Tudor-Mihai — Programare Web, 2026
+Grecu Tudor-Mihai - Programare Web, 2026
